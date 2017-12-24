@@ -10,7 +10,7 @@ from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 X = np.zeros((299, 299, 3), dtype=np.float32)
-breed = np.load('dog_names.npy')
+sorted_breed = np.load('breed_sorted.npy')
 
 pred_images = np.array(glob("pic_pred/*"))
 for dog_pic in pred_images:
@@ -19,11 +19,11 @@ for dog_pic in pred_images:
 
     # TODO: state this before the loop, change model file too
     model = linear(inception_features, out_sz=120)
-    # model.load_weights('weights.best.inceptresnetv2.hdf5')
+    model.load_weights('weights.best.inceptresnetv2.hdf5')
 
     y_pred = model.predict(inception_features, batch_size=1)
     pred = np.argmax(y_pred, axis=1)
-    print(dog_pic, "is a ", breed[pred])
+    print(dog_pic, "is a ", sorted_breed[pred])
 
 
 
