@@ -32,7 +32,7 @@ print("first file before shuffle", train_files[0], train_targets[0])
 train_files, train_targets = shuffle(train_files, train_targets, random_state=0)
 print("first file after shuffle", train_files[0], train_targets[0])
 
-dog_names = [item[29:-1] for item in sorted(glob("stanford/Images_re/*/"), reverse=True)]
+dog_names = [item[29:-1] for item in sorted(glob("stanford/Images_re/*/"))]
 np.save('dog_names', dog_names)
 print(dog_names)
 
